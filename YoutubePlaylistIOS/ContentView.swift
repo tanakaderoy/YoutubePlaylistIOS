@@ -13,7 +13,6 @@ struct ContentView: View {
     @State var isLoading = false
     @ObservedObject var channelManager = ChannelManager.shared
     @Environment(\.imageCache) var cache: ImageCache
-    var circularIndicator = UIActivityIndicatorView()
 
 
 
@@ -43,8 +42,6 @@ struct ContentView: View {
                             self.peformSearch(query: self.searchString)
                         }).border(Color.black,width: 0.5).padding(.all, 8)
                         Button(action: {
-                            self.circularIndicator.startAnimating()
-                            print("hello")
                             self.peformSearch(query: self.searchString)
 
                         }, label: {
