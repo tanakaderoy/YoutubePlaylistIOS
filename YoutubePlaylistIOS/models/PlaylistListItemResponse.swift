@@ -1,21 +1,21 @@
 //
-//  ChannelListSearchResponse.swift
+//  PlaylistListItemResponse.swift
 //  YoutubePlaylistIOS
 //
-//  Created by Tanaka Mazivanhanga on 4/13/20.
+//  Created by Tanaka Mazivanhanga on 4/14/20.
 //  Copyright © 2020 Tanaka Mazivanhanga. All rights reserved.
 //
 
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
-//   let channelSearchListResponse = try? newJSONDecoder().decode(ChannelSearchListResponse.self, from: jsonData)
+//   let playlistListItemResponse = try? newJSONDecoder().decode(PlaylistListItemResponse.self, from: jsonData)
 
 //
 // To read values from URLs:
 //
-//   let task = URLSession.shared.channelSearchListResponseTask(with: url) { channelSearchListResponse, response, error in
-//     if let channelSearchListResponse = channelSearchListResponse {
+//   let task = URLSession.shared.playlistListItemResponseTask(with: url) { playlistListItemResponse, response, error in
+//     if let playlistListItemResponse = playlistListItemResponse {
 //       ...
 //     }
 //   }
@@ -23,17 +23,18 @@
 
 import Foundation
 
-// MARK: - ChannelSearchListResponse
-class ChannelSearchListResponse: Codable {
-    let kind, etag, nextPageToken, regionCode: String
+// MARK: - PlaylistListItemResponse
+class PlaylistListItemResponse: Codable {
+    let kind, etag, nextPageToken:String
+    let prevPageToken: String?
     let pageInfo: PageInfo
     let items: [Item]
 
-    init(kind: String, etag: String, nextPageToken: String, regionCode: String, pageInfo: PageInfo, items: [Item]) {
+    init(kind: String, etag: String, nextPageToken: String, prevPageToken: String, pageInfo: PageInfo, items: [Item]) {
         self.kind = kind
         self.etag = etag
         self.nextPageToken = nextPageToken
-        self.regionCode = regionCode
+        self.prevPageToken = prevPageToken
         self.pageInfo = pageInfo
         self.items = items
     }
@@ -51,40 +52,41 @@ class ChannelSearchListResponse: Codable {
 
     // MARK: - Item
     class Item: Codable {
-        let kind, etag: String
-        let id: ID
+        let kind, etag, id: String
         let snippet: Snippet
+        let contentDetails: ContentDetails
 
-        init(kind: String, etag: String, id: ID, snippet: Snippet) {
+        init(kind: String, etag: String, id: String, snippet: Snippet, contentDetails: ContentDetails) {
             self.kind = kind
             self.etag = etag
             self.id = id
             self.snippet = snippet
+            self.contentDetails = contentDetails
         }
     }
 
     //
     // To read values from URLs:
     //
-    //   let task = URLSession.shared.iDTask(with: url) { iD, response, error in
-    //     if let iD = iD {
+    //   let task = URLSession.shared.contentDetailsTask(with: url) { contentDetails, response, error in
+    //     if let contentDetails = contentDetails {
     //       ...
     //     }
     //   }
     //   task.resume()
 
-    // MARK: - ID
-    class ID: Codable {
-        let kind, channelID: String
+    // MARK: - ContentDetails
+    class ContentDetails: Codable {
+        let videoID, videoPublishedAt: String
 
         enum CodingKeys: String, CodingKey {
-            case kind
-            case channelID = "channelId"
+            case videoID = "videoId"
+            case videoPublishedAt
         }
 
-        init(kind: String, channelID: String) {
-            self.kind = kind
-            self.channelID = channelID
+        init(videoID: String, videoPublishedAt: String) {
+            self.videoID = videoID
+            self.videoPublishedAt = videoPublishedAt
         }
     }
 
@@ -102,24 +104,56 @@ class ChannelSearchListResponse: Codable {
     class Snippet: Codable {
         let publishedAt, channelID, title, snippetDescription: String
         let thumbnails: Thumbnails
-        let channelTitle, liveBroadcastContent: String
+        let channelTitle, playlistID: String
+        let position: Int
+        let resourceID: ResourceID
 
         enum CodingKeys: String, CodingKey {
             case publishedAt
             case channelID = "channelId"
             case title
             case snippetDescription = "description"
-            case thumbnails, channelTitle, liveBroadcastContent
+            case thumbnails, channelTitle
+            case playlistID = "playlistId"
+            case position
+            case resourceID = "resourceId"
         }
 
-        init(publishedAt: String, channelID: String, title: String, snippetDescription: String, thumbnails: Thumbnails, channelTitle: String, liveBroadcastContent: String) {
+        init(publishedAt: String, channelID: String, title: String, snippetDescription: String, thumbnails: Thumbnails, channelTitle: String, playlistID: String, position: Int, resourceID: ResourceID) {
             self.publishedAt = publishedAt
             self.channelID = channelID
             self.title = title
             self.snippetDescription = snippetDescription
             self.thumbnails = thumbnails
             self.channelTitle = channelTitle
-            self.liveBroadcastContent = liveBroadcastContent
+            self.playlistID = playlistID
+            self.position = position
+            self.resourceID = resourceID
+        }
+    }
+
+    //
+    // To read values from URLs:
+    //
+    //   let task = URLSession.shared.resourceIDTask(with: url) { resourceID, response, error in
+    //     if let resourceID = resourceID {
+    //       ...
+    //     }
+    //   }
+    //   task.resume()
+
+    // MARK: - ResourceID
+    class ResourceID: Codable {
+        let kind, videoID: String
+
+        enum CodingKeys: String, CodingKey {
+            case kind
+            case videoID = "videoId"
+        }
+
+        init(kind: String, videoID: String) {
+            self.kind = kind
+            self.videoID = videoID
         }
     }
 
@@ -162,21 +196,15 @@ class ChannelSearchListResponse: Codable {
     // MARK: - Default
     class Default: Codable {
         let url: String
+        let width, height: Int
 
-        init(url: String) {
+        init(url: String, width: Int, height: Int) {
             self.url = url
+            self.width = width
+            self.height = height
         }
     }
 
-    //
-    // To read values from URLs:
-    //
-    //   let task = URLSession.shared.pageInfoTask(with: url) { pageInfo, response, error in
-    //     if let pageInfo = pageInfo {
-    //       ...
-    //     }
-    //   }
-    //   task.resume()
 
     // MARK: - PageInfo
     class PageInfo: Codable {
@@ -187,56 +215,14 @@ class ChannelSearchListResponse: Codable {
             self.resultsPerPage = resultsPerPage
         }
     }
-    
 }
 
-// MARK: - Helper functions for creating encoders and decoders
-
-func newJSONDecoder() -> JSONDecoder {
-    let decoder = JSONDecoder()
-    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-        decoder.dateDecodingStrategy = .iso8601
-    }
-    return decoder
-}
-
-func newJSONEncoder() -> JSONEncoder {
-    let encoder = JSONEncoder()
-    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-        encoder.dateEncodingStrategy = .iso8601
-    }
-    return encoder
-}
 
 // MARK: - URLSession response handlers
 
 extension URLSession {
-    func codableTask<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return self.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                completionHandler(nil, response, error)
-                return
-            }
-            do {
-                   let youtubeError = try newJSONDecoder().decode(YoutubeError.self, from: data)
-                print(youtubeError.error.message)
-                completionHandler(nil, response, error)
 
-
-            }catch{
-                print(" No Youtube errors")
-            }
-            do {
-                let decoded = try newJSONDecoder().decode(T.self, from: data)
-                completionHandler(decoded,response,nil)
-            }catch{
-                completionHandler(nil,response,error)
-            }
-//            completionHandler(try? JSONDecoder().decode(T.self, from: data), response, nil)
-        }
-    }
-
-    func channelSearchListResponseTask(with url: URL, completionHandler: @escaping (ChannelSearchListResponse?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+    func playlistListItemResponseTask(with url: URL, completionHandler: @escaping (PlaylistListItemResponse?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         return self.codableTask(with: url, completionHandler: completionHandler)
     }
 }

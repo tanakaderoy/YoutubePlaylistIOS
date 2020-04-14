@@ -24,6 +24,12 @@
 		BA588A2B2445661B0090EC38 /* PlaylistListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A2A2445661B0090EC38 /* PlaylistListItem.swift */; };
 		BA588A2D24456A410090EC38 /* PlaylistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A2C24456A410090EC38 /* PlaylistListView.swift */; };
 		BA588A2F24458BE60090EC38 /* YoutubeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A2E24458BE60090EC38 /* YoutubeError.swift */; };
+		BAC87778244635BE00597CF7 /* PlaylistListItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC87777244635BE00597CF7 /* PlaylistListItemResponse.swift */; };
+		BAC8777A2446371F00597CF7 /* VideoListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC877792446371F00597CF7 /* VideoListItem.swift */; };
+		BAC8777C24463A4000597CF7 /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC8777B24463A4000597CF7 /* VideoListView.swift */; };
+		BAC8777E24465A7200597CF7 /* VideoListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC8777D24465A7200597CF7 /* VideoListManager.swift */; };
+		BAC8778024465A8F00597CF7 /* PlaylistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC8777F24465A8F00597CF7 /* PlaylistManager.swift */; };
+		BAC8778224465B2200597CF7 /* ShowMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC8778124465B2200597CF7 /* ShowMoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +52,12 @@
 		BA588A2A2445661B0090EC38 /* PlaylistListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistListItem.swift; sourceTree = "<group>"; };
 		BA588A2C24456A410090EC38 /* PlaylistListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistListView.swift; sourceTree = "<group>"; };
 		BA588A2E24458BE60090EC38 /* YoutubeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeError.swift; sourceTree = "<group>"; };
+		BAC87777244635BE00597CF7 /* PlaylistListItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistListItemResponse.swift; sourceTree = "<group>"; };
+		BAC877792446371F00597CF7 /* VideoListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListItem.swift; sourceTree = "<group>"; };
+		BAC8777B24463A4000597CF7 /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
+		BAC8777D24465A7200597CF7 /* VideoListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListManager.swift; sourceTree = "<group>"; };
+		BAC8777F24465A8F00597CF7 /* PlaylistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistManager.swift; sourceTree = "<group>"; };
+		BAC8778124465B2200597CF7 /* ShowMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,8 @@
 				BA588A282445652A0090EC38 /* PlaylistListResponse.swift */,
 				BA588A2A2445661B0090EC38 /* PlaylistListItem.swift */,
 				BA588A2E24458BE60090EC38 /* YoutubeError.swift */,
+				BAC87777244635BE00597CF7 /* PlaylistListItemResponse.swift */,
+				BAC877792446371F00597CF7 /* VideoListItem.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -118,6 +132,7 @@
 			children = (
 				BA588A052444CB830090EC38 /* ChannelListView.swift */,
 				BA588A2C24456A410090EC38 /* PlaylistListView.swift */,
+				BAC8777B24463A4000597CF7 /* VideoListView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -126,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				BA588A26244562060090EC38 /* ChannelManager.swift */,
+				BAC8777D24465A7200597CF7 /* VideoListManager.swift */,
+				BAC8777F24465A8F00597CF7 /* PlaylistManager.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -135,6 +152,7 @@
 			children = (
 				BA588A1D244559380090EC38 /* LoadingView.swift */,
 				BA588A1B2444F6470090EC38 /* ImageLoader.swift */,
+				BAC8778124465B2200597CF7 /* ShowMoreView.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -219,16 +237,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAC8777A2446371F00597CF7 /* VideoListItem.swift in Sources */,
 				BA588A2F24458BE60090EC38 /* YoutubeError.swift in Sources */,
+				BAC8777C24463A4000597CF7 /* VideoListView.swift in Sources */,
 				BA588A2024455F550090EC38 /* APIKEY.swift in Sources */,
 				BA588A292445652A0090EC38 /* PlaylistListResponse.swift in Sources */,
 				BA588A27244562060090EC38 /* ChannelManager.swift in Sources */,
 				BA588A1C2444F6470090EC38 /* ImageLoader.swift in Sources */,
+				BAC8778024465A8F00597CF7 /* PlaylistManager.swift in Sources */,
 				BA588A2D24456A410090EC38 /* PlaylistListView.swift in Sources */,
 				BA588A182444E8020090EC38 /* ChannelListSearchResponse.swift in Sources */,
 				BA588A162444CCD50090EC38 /* ChannelListItem.swift in Sources */,
 				BA588A1E244559380090EC38 /* LoadingView.swift in Sources */,
+				BAC8778224465B2200597CF7 /* ShowMoreView.swift in Sources */,
+				BAC8777E24465A7200597CF7 /* VideoListManager.swift in Sources */,
 				BA588A022444CB830090EC38 /* AppDelegate.swift in Sources */,
+				BAC87778244635BE00597CF7 /* PlaylistListItemResponse.swift in Sources */,
 				BA588A042444CB830090EC38 /* SceneDelegate.swift in Sources */,
 				BA588A1A2444E84F0090EC38 /* API.swift in Sources */,
 				BA588A2B2445661B0090EC38 /* PlaylistListItem.swift in Sources */,
@@ -373,6 +397,7 @@
 				DEVELOPMENT_TEAM = J3NVQ5AFC2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = YoutubePlaylistIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -380,7 +405,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tanakamazivanhanga.YoutubePlaylistIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -393,6 +418,7 @@
 				DEVELOPMENT_TEAM = J3NVQ5AFC2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = YoutubePlaylistIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,7 +426,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tanakamazivanhanga.YoutubePlaylistIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

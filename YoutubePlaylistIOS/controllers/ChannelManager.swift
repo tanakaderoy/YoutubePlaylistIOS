@@ -24,21 +24,4 @@ class ChannelManager:ObservableObject {
     }
     func getChannels()-> [ChannelListItem] {return channels}
 
-
-}
-class PlaylistManager:ObservableObject{
-    @Published private var playlists = [PlaylistListItem]()
-    static let shared = PlaylistManager()
-    public func replace(newPlaylists:[PlaylistListItem]){
-        DispatchQueue.main.async {
-            self.playlists = newPlaylists
-        }
-    }
-    func clear(){
-        DispatchQueue.main.async {
-                   self.playlists = [PlaylistListItem]()
-               }
-    }
-    func getPlaylists() -> [PlaylistListItem] {return playlists}
-
 }
