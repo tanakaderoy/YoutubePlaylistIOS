@@ -13,6 +13,12 @@
 		BA588A082444CB870090EC38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA588A072444CB870090EC38 /* Assets.xcassets */; };
 		BA588A0B2444CB870090EC38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA588A0A2444CB870090EC38 /* Preview Assets.xcassets */; };
 		BA588A0E2444CB870090EC38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA588A0C2444CB870090EC38 /* LaunchScreen.storyboard */; };
+		BA588A162444CCD50090EC38 /* ChannelListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A152444CCD50090EC38 /* ChannelListItem.swift */; };
+		BA588A182444E8020090EC38 /* ChannelListSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A172444E8020090EC38 /* ChannelListSearchResponse.swift */; };
+		BA588A1A2444E84F0090EC38 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A192444E84F0090EC38 /* API.swift */; };
+		BA588A1C2444F6470090EC38 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A1B2444F6470090EC38 /* ImageLoader.swift */; };
+		BA588A1E244559380090EC38 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A1D244559380090EC38 /* LoadingView.swift */; };
+		BA588A2024455F550090EC38 /* APIKEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A1F24455F550090EC38 /* APIKEY.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		BA588A0A2444CB870090EC38 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA588A0D2444CB870090EC38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA588A0F2444CB870090EC38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA588A152444CCD50090EC38 /* ChannelListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListItem.swift; sourceTree = "<group>"; };
+		BA588A172444E8020090EC38 /* ChannelListSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListSearchResponse.swift; sourceTree = "<group>"; };
+		BA588A192444E84F0090EC38 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		BA588A1B2444F6470090EC38 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		BA588A1D244559380090EC38 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		BA588A1F24455F550090EC38 /* APIKEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKEY.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +70,17 @@
 			children = (
 				BA588A012444CB830090EC38 /* AppDelegate.swift */,
 				BA588A032444CB830090EC38 /* SceneDelegate.swift */,
+				BA588A172444E8020090EC38 /* ChannelListSearchResponse.swift */,
+				BA588A192444E84F0090EC38 /* API.swift */,
+				BA588A1F24455F550090EC38 /* APIKEY.swift */,
 				BA588A052444CB830090EC38 /* ContentView.swift */,
+				BA588A1D244559380090EC38 /* LoadingView.swift */,
+				BA588A152444CCD50090EC38 /* ChannelListItem.swift */,
 				BA588A072444CB870090EC38 /* Assets.xcassets */,
 				BA588A0C2444CB870090EC38 /* LaunchScreen.storyboard */,
 				BA588A0F2444CB870090EC38 /* Info.plist */,
 				BA588A092444CB870090EC38 /* Preview Content */,
+				BA588A1B2444F6470090EC38 /* ImageLoader.swift */,
 			);
 			path = YoutubePlaylistIOS;
 			sourceTree = "<group>";
@@ -146,8 +164,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA588A2024455F550090EC38 /* APIKEY.swift in Sources */,
+				BA588A1C2444F6470090EC38 /* ImageLoader.swift in Sources */,
+				BA588A182444E8020090EC38 /* ChannelListSearchResponse.swift in Sources */,
+				BA588A162444CCD50090EC38 /* ChannelListItem.swift in Sources */,
+				BA588A1E244559380090EC38 /* LoadingView.swift in Sources */,
 				BA588A022444CB830090EC38 /* AppDelegate.swift in Sources */,
 				BA588A042444CB830090EC38 /* SceneDelegate.swift in Sources */,
+				BA588A1A2444E84F0090EC38 /* API.swift in Sources */,
 				BA588A062444CB830090EC38 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
