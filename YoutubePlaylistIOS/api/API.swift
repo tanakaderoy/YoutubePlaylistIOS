@@ -100,6 +100,26 @@ class Api{
         task.resume()
 
     }
+
+    func fetchPlaylistVideos(byPlaylisttId playlistId:String, completion: @escaping (_ result: [VideoListItem]?)->()){
+        urlComponent.path = "/youtube/v3/playlistItems"
+        let part = URLQueryItem(name: "part", value: "snippet,contentDetails")
+        let maxResults = URLQueryItem(name: "maxResults", value: "50")
+        let playlistIdQ = URLQueryItem(name: "playlistId", value: playlistId)
+        urlComponent.queryItems = [part,maxResults,playlistIdQ,key]
+        guard let url = urlComponent.url else {return}
+        print(url)
+        let task = URLSession.shared.playlistListItemResponseTask(with: url) { playlistListItemResponse, response, error in
+            if let playlistListItemResponse = playlistListItemResponse {
+                let videoListItems = playlistListItemResponse.items.map { (item:PlaylistListItemResponse.Item) -> VideoListItem in
+                    return VideoListItem(videoTitle: item.snippet.title, videoDescription: item.snippet.snippetDescription, videoThumbnailUrl: item.snippet.thumbnails.high.url, videoId: item.contentDetails.videoID, playlistId: item.snippet.playlistID)
+                }
+                completion(videoListItems)
+            }
+            completion(nil)
+        }
+        task.resume()
+    }
     
 }
 
