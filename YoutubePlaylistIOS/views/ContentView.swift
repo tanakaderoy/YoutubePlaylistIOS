@@ -69,22 +69,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-class ChannelManager:ObservableObject {
-    @Published private var channels = [ChannelListItem]()
-    static let shared = ChannelManager()
-    func addChannel(channel:ChannelListItem) {
-        DispatchQueue.main.async {
-            self.channels.append(channel)
-        }
-    }
-
-    func replace(newChannels: [ChannelListItem]){
-        DispatchQueue.main.async {
-            self.channels = newChannels
-        }
-    }
-    func getChannels()-> [ChannelListItem] {return channels}
-
-
-}

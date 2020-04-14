@@ -19,6 +19,7 @@
 		BA588A1C2444F6470090EC38 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A1B2444F6470090EC38 /* ImageLoader.swift */; };
 		BA588A1E244559380090EC38 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A1D244559380090EC38 /* LoadingView.swift */; };
 		BA588A2024455F550090EC38 /* APIKEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A1F24455F550090EC38 /* APIKEY.swift */; };
+		BA588A27244562060090EC38 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A26244562060090EC38 /* ChannelManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +36,8 @@
 		BA588A192444E84F0090EC38 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		BA588A1B2444F6470090EC38 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		BA588A1D244559380090EC38 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		BA588A1F24455F550090EC38 /* APIKEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKEY.swift; sourceTree = "<group>"; };
+		BA588A1F24455F550090EC38 /* APIKEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIKEY.swift; path = ../APIKEY.swift; sourceTree = "<group>"; };
+		BA588A26244562060090EC38 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,19 +70,17 @@
 		BA588A002444CB830090EC38 /* YoutubePlaylistIOS */ = {
 			isa = PBXGroup;
 			children = (
+				BA588A25244561E00090EC38 /* api */,
+				BA588A24244561BD0090EC38 /* utils */,
+				BA588A23244561B50090EC38 /* controllers */,
+				BA588A22244561AE0090EC38 /* views */,
+				BA588A21244561A50090EC38 /* models */,
 				BA588A012444CB830090EC38 /* AppDelegate.swift */,
 				BA588A032444CB830090EC38 /* SceneDelegate.swift */,
-				BA588A172444E8020090EC38 /* ChannelListSearchResponse.swift */,
-				BA588A192444E84F0090EC38 /* API.swift */,
-				BA588A1F24455F550090EC38 /* APIKEY.swift */,
-				BA588A052444CB830090EC38 /* ContentView.swift */,
-				BA588A1D244559380090EC38 /* LoadingView.swift */,
-				BA588A152444CCD50090EC38 /* ChannelListItem.swift */,
 				BA588A072444CB870090EC38 /* Assets.xcassets */,
 				BA588A0C2444CB870090EC38 /* LaunchScreen.storyboard */,
 				BA588A0F2444CB870090EC38 /* Info.plist */,
 				BA588A092444CB870090EC38 /* Preview Content */,
-				BA588A1B2444F6470090EC38 /* ImageLoader.swift */,
 			);
 			path = YoutubePlaylistIOS;
 			sourceTree = "<group>";
@@ -91,6 +91,49 @@
 				BA588A0A2444CB870090EC38 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BA588A21244561A50090EC38 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				BA588A172444E8020090EC38 /* ChannelListSearchResponse.swift */,
+				BA588A152444CCD50090EC38 /* ChannelListItem.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		BA588A22244561AE0090EC38 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				BA588A052444CB830090EC38 /* ContentView.swift */,
+				BA588A1D244559380090EC38 /* LoadingView.swift */,
+				BA588A1B2444F6470090EC38 /* ImageLoader.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		BA588A23244561B50090EC38 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BA588A26244562060090EC38 /* ChannelManager.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		BA588A24244561BD0090EC38 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		BA588A25244561E00090EC38 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				BA588A192444E84F0090EC38 /* API.swift */,
+				BA588A1F24455F550090EC38 /* APIKEY.swift */,
+			);
+			path = api;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA588A2024455F550090EC38 /* APIKEY.swift in Sources */,
+				BA588A27244562060090EC38 /* ChannelManager.swift in Sources */,
 				BA588A1C2444F6470090EC38 /* ImageLoader.swift in Sources */,
 				BA588A182444E8020090EC38 /* ChannelListSearchResponse.swift in Sources */,
 				BA588A162444CCD50090EC38 /* ChannelListItem.swift in Sources */,
