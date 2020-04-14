@@ -39,154 +39,154 @@ class ChannelSearchListResponse: Codable {
     }
 
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.itemTask(with: url) { item, response, error in
-//     if let item = item {
-//       ...
-//     }
-//   }
-//   task.resume()
+    //
+    // To read values from URLs:
+    //
+    //   let task = URLSession.shared.itemTask(with: url) { item, response, error in
+    //     if let item = item {
+    //       ...
+    //     }
+    //   }
+    //   task.resume()
 
-// MARK: - Item
-class Item: Codable {
-    let kind, etag: String
-    let id: ID
-    let snippet: Snippet
+    // MARK: - Item
+    class Item: Codable {
+        let kind, etag: String
+        let id: ID
+        let snippet: Snippet
 
-    init(kind: String, etag: String, id: ID, snippet: Snippet) {
-        self.kind = kind
-        self.etag = etag
-        self.id = id
-        self.snippet = snippet
-    }
-}
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.iDTask(with: url) { iD, response, error in
-//     if let iD = iD {
-//       ...
-//     }
-//   }
-//   task.resume()
-
-// MARK: - ID
-class ID: Codable {
-    let kind, channelID: String
-
-    enum CodingKeys: String, CodingKey {
-        case kind
-        case channelID = "channelId"
+        init(kind: String, etag: String, id: ID, snippet: Snippet) {
+            self.kind = kind
+            self.etag = etag
+            self.id = id
+            self.snippet = snippet
+        }
     }
 
-    init(kind: String, channelID: String) {
-        self.kind = kind
-        self.channelID = channelID
-    }
-}
+    //
+    // To read values from URLs:
+    //
+    //   let task = URLSession.shared.iDTask(with: url) { iD, response, error in
+    //     if let iD = iD {
+    //       ...
+    //     }
+    //   }
+    //   task.resume()
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.snippetTask(with: url) { snippet, response, error in
-//     if let snippet = snippet {
-//       ...
-//     }
-//   }
-//   task.resume()
+    // MARK: - ID
+    class ID: Codable {
+        let kind, channelID: String
 
-// MARK: - Snippet
-class Snippet: Codable {
-    let publishedAt, channelID, title, snippetDescription: String
-    let thumbnails: Thumbnails
-    let channelTitle, liveBroadcastContent: String
+        enum CodingKeys: String, CodingKey {
+            case kind
+            case channelID = "channelId"
+        }
 
-    enum CodingKeys: String, CodingKey {
-        case publishedAt
-        case channelID = "channelId"
-        case title
-        case snippetDescription = "description"
-        case thumbnails, channelTitle, liveBroadcastContent
+        init(kind: String, channelID: String) {
+            self.kind = kind
+            self.channelID = channelID
+        }
     }
 
-    init(publishedAt: String, channelID: String, title: String, snippetDescription: String, thumbnails: Thumbnails, channelTitle: String, liveBroadcastContent: String) {
-        self.publishedAt = publishedAt
-        self.channelID = channelID
-        self.title = title
-        self.snippetDescription = snippetDescription
-        self.thumbnails = thumbnails
-        self.channelTitle = channelTitle
-        self.liveBroadcastContent = liveBroadcastContent
+    //
+    // To read values from URLs:
+    //
+    //   let task = URLSession.shared.snippetTask(with: url) { snippet, response, error in
+    //     if let snippet = snippet {
+    //       ...
+    //     }
+    //   }
+    //   task.resume()
+
+    // MARK: - Snippet
+    class Snippet: Codable {
+        let publishedAt, channelID, title, snippetDescription: String
+        let thumbnails: Thumbnails
+        let channelTitle, liveBroadcastContent: String
+
+        enum CodingKeys: String, CodingKey {
+            case publishedAt
+            case channelID = "channelId"
+            case title
+            case snippetDescription = "description"
+            case thumbnails, channelTitle, liveBroadcastContent
+        }
+
+        init(publishedAt: String, channelID: String, title: String, snippetDescription: String, thumbnails: Thumbnails, channelTitle: String, liveBroadcastContent: String) {
+            self.publishedAt = publishedAt
+            self.channelID = channelID
+            self.title = title
+            self.snippetDescription = snippetDescription
+            self.thumbnails = thumbnails
+            self.channelTitle = channelTitle
+            self.liveBroadcastContent = liveBroadcastContent
+        }
     }
-}
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.thumbnailsTask(with: url) { thumbnails, response, error in
-//     if let thumbnails = thumbnails {
-//       ...
-//     }
-//   }
-//   task.resume()
+    //
+    // To read values from URLs:
+    //
+    //   let task = URLSession.shared.thumbnailsTask(with: url) { thumbnails, response, error in
+    //     if let thumbnails = thumbnails {
+    //       ...
+    //     }
+    //   }
+    //   task.resume()
 
-// MARK: - Thumbnails
-class Thumbnails: Codable {
-    let thumbnailsDefault, medium, high: Default
+    // MARK: - Thumbnails
+    class Thumbnails: Codable {
+        let thumbnailsDefault, medium, high: Default
 
-    enum CodingKeys: String, CodingKey {
-        case thumbnailsDefault = "default"
-        case medium, high
+        enum CodingKeys: String, CodingKey {
+            case thumbnailsDefault = "default"
+            case medium, high
+        }
+
+        init(thumbnailsDefault: Default, medium: Default, high: Default) {
+            self.thumbnailsDefault = thumbnailsDefault
+            self.medium = medium
+            self.high = high
+        }
     }
 
-    init(thumbnailsDefault: Default, medium: Default, high: Default) {
-        self.thumbnailsDefault = thumbnailsDefault
-        self.medium = medium
-        self.high = high
+    //
+    // To read values from URLs:
+    //
+    //   let task = URLSession.shared.defaultTask(with: url) { default, response, error in
+    //     if let default = default {
+    //       ...
+    //     }
+    //   }
+    //   task.resume()
+
+    // MARK: - Default
+    class Default: Codable {
+        let url: String
+
+        init(url: String) {
+            self.url = url
+        }
     }
-}
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.defaultTask(with: url) { default, response, error in
-//     if let default = default {
-//       ...
-//     }
-//   }
-//   task.resume()
+    //
+    // To read values from URLs:
+    //
+    //   let task = URLSession.shared.pageInfoTask(with: url) { pageInfo, response, error in
+    //     if let pageInfo = pageInfo {
+    //       ...
+    //     }
+    //   }
+    //   task.resume()
 
-// MARK: - Default
-class Default: Codable {
-    let url: String
+    // MARK: - PageInfo
+    class PageInfo: Codable {
+        let totalResults, resultsPerPage: Int
 
-    init(url: String) {
-        self.url = url
+        init(totalResults: Int, resultsPerPage: Int) {
+            self.totalResults = totalResults
+            self.resultsPerPage = resultsPerPage
+        }
     }
-}
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.pageInfoTask(with: url) { pageInfo, response, error in
-//     if let pageInfo = pageInfo {
-//       ...
-//     }
-//   }
-//   task.resume()
-
-// MARK: - PageInfo
-class PageInfo: Codable {
-    let totalResults, resultsPerPage: Int
-
-    init(totalResults: Int, resultsPerPage: Int) {
-        self.totalResults = totalResults
-        self.resultsPerPage = resultsPerPage
-    }
-}
     
 }
 
@@ -211,11 +211,20 @@ func newJSONEncoder() -> JSONEncoder {
 // MARK: - URLSession response handlers
 
 extension URLSession {
-    fileprivate func codableTask<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+    func codableTask<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         return self.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
                 completionHandler(nil, response, error)
                 return
+            }
+            do {
+                   let youtubeError = try newJSONDecoder().decode(YoutubeError.self, from: data)
+                print(youtubeError.error.message)
+                completionHandler(nil, response, error)
+
+
+            }catch{
+                print("No Youtube errors")
             }
             completionHandler(try? newJSONDecoder().decode(T.self, from: data), response, nil)
         }

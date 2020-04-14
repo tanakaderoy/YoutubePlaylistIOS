@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BA588A022444CB830090EC38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A012444CB830090EC38 /* AppDelegate.swift */; };
 		BA588A042444CB830090EC38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A032444CB830090EC38 /* SceneDelegate.swift */; };
-		BA588A062444CB830090EC38 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A052444CB830090EC38 /* ContentView.swift */; };
+		BA588A062444CB830090EC38 /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A052444CB830090EC38 /* ChannelListView.swift */; };
 		BA588A082444CB870090EC38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA588A072444CB870090EC38 /* Assets.xcassets */; };
 		BA588A0B2444CB870090EC38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA588A0A2444CB870090EC38 /* Preview Assets.xcassets */; };
 		BA588A0E2444CB870090EC38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA588A0C2444CB870090EC38 /* LaunchScreen.storyboard */; };
@@ -20,13 +20,17 @@
 		BA588A1E244559380090EC38 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A1D244559380090EC38 /* LoadingView.swift */; };
 		BA588A2024455F550090EC38 /* APIKEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A1F24455F550090EC38 /* APIKEY.swift */; };
 		BA588A27244562060090EC38 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A26244562060090EC38 /* ChannelManager.swift */; };
+		BA588A292445652A0090EC38 /* PlaylistListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A282445652A0090EC38 /* PlaylistListResponse.swift */; };
+		BA588A2B2445661B0090EC38 /* PlaylistListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A2A2445661B0090EC38 /* PlaylistListItem.swift */; };
+		BA588A2D24456A410090EC38 /* PlaylistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A2C24456A410090EC38 /* PlaylistListView.swift */; };
+		BA588A2F24458BE60090EC38 /* YoutubeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA588A2E24458BE60090EC38 /* YoutubeError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BA5889FE2444CB830090EC38 /* YoutubePlaylistIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubePlaylistIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA588A012444CB830090EC38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA588A032444CB830090EC38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BA588A052444CB830090EC38 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BA588A052444CB830090EC38 /* ChannelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListView.swift; sourceTree = "<group>"; };
 		BA588A072444CB870090EC38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA588A0A2444CB870090EC38 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA588A0D2444CB870090EC38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +42,10 @@
 		BA588A1D244559380090EC38 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BA588A1F24455F550090EC38 /* APIKEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIKEY.swift; path = ../APIKEY.swift; sourceTree = "<group>"; };
 		BA588A26244562060090EC38 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
+		BA588A282445652A0090EC38 /* PlaylistListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistListResponse.swift; sourceTree = "<group>"; };
+		BA588A2A2445661B0090EC38 /* PlaylistListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistListItem.swift; sourceTree = "<group>"; };
+		BA588A2C24456A410090EC38 /* PlaylistListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistListView.swift; sourceTree = "<group>"; };
+		BA588A2E24458BE60090EC38 /* YoutubeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,9 @@
 			children = (
 				BA588A172444E8020090EC38 /* ChannelListSearchResponse.swift */,
 				BA588A152444CCD50090EC38 /* ChannelListItem.swift */,
+				BA588A282445652A0090EC38 /* PlaylistListResponse.swift */,
+				BA588A2A2445661B0090EC38 /* PlaylistListItem.swift */,
+				BA588A2E24458BE60090EC38 /* YoutubeError.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -105,9 +116,8 @@
 		BA588A22244561AE0090EC38 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				BA588A052444CB830090EC38 /* ContentView.swift */,
-				BA588A1D244559380090EC38 /* LoadingView.swift */,
-				BA588A1B2444F6470090EC38 /* ImageLoader.swift */,
+				BA588A052444CB830090EC38 /* ChannelListView.swift */,
+				BA588A2C24456A410090EC38 /* PlaylistListView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -123,6 +133,8 @@
 		BA588A24244561BD0090EC38 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				BA588A1D244559380090EC38 /* LoadingView.swift */,
+				BA588A1B2444F6470090EC38 /* ImageLoader.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -207,16 +219,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA588A2F24458BE60090EC38 /* YoutubeError.swift in Sources */,
 				BA588A2024455F550090EC38 /* APIKEY.swift in Sources */,
+				BA588A292445652A0090EC38 /* PlaylistListResponse.swift in Sources */,
 				BA588A27244562060090EC38 /* ChannelManager.swift in Sources */,
 				BA588A1C2444F6470090EC38 /* ImageLoader.swift in Sources */,
+				BA588A2D24456A410090EC38 /* PlaylistListView.swift in Sources */,
 				BA588A182444E8020090EC38 /* ChannelListSearchResponse.swift in Sources */,
 				BA588A162444CCD50090EC38 /* ChannelListItem.swift in Sources */,
 				BA588A1E244559380090EC38 /* LoadingView.swift in Sources */,
 				BA588A022444CB830090EC38 /* AppDelegate.swift in Sources */,
 				BA588A042444CB830090EC38 /* SceneDelegate.swift in Sources */,
 				BA588A1A2444E84F0090EC38 /* API.swift in Sources */,
-				BA588A062444CB830090EC38 /* ContentView.swift in Sources */,
+				BA588A2B2445661B0090EC38 /* PlaylistListItem.swift in Sources */,
+				BA588A062444CB830090EC38 /* ChannelListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

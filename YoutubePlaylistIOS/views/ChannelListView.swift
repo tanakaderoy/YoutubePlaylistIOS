@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  ChannelListView.swift
 //  YoutubePlaylistIOS
 //
 //  Created by Tanaka Mazivanhanga on 4/13/20.
@@ -8,29 +8,11 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ChannelListView: View {
     @State var searchString = ""
     @State var isLoading = false
     @ObservedObject var channelManager = ChannelManager.shared
     @Environment(\.imageCache) var cache: ImageCache
-
-
-
-    fileprivate func peformSearch(query:String) {
-        isLoading = true
-        Api.shared.searchChannel(channel: query) { (resp: ChannelSearchListResponse?) in
-            guard let resp = resp else{
-                self.isLoading = false
-                print("Error!!!!")
-                return
-            }
-            self.isLoading = false
-            let channelItems = resp.items.map { (item:ChannelSearchListResponse.Item) -> ChannelListItem in
-                return ChannelListItem(channelImageURL: item.snippet.thumbnails.high.url, channelName: item.snippet.channelTitle, channelId: item.snippet.channelID, uploadCount: 3)
-            }
-            self.channelManager.replace(newChannels: channelItems)
-        }
-    }
 
     var body: some View {
         NavigationView{
@@ -49,10 +31,12 @@ struct ContentView: View {
                         })
                     }
                     List(self.channelManager.getChannels()){(channel: ChannelListItem) in
+                        NavigationLink(destination: PlaylistListView(channelId: channel.channelId, channelName: channel.channelName, channelImage: channel.channelImageURL) ) {
                         HStack {
-                            AsyncImage(url: URL(string: channel.channelImageURL)!, placeholder: Text("Loading..."),cache: self.cache).aspectRatio(contentMode: .fit)
+                            AsyncImage(url: URL(string: channel.channelImageURL)!, placeholder: ActivityIndicator(isAnimating: .constant(true), style: .large),cache: self.cache, width: 100,height: 100).aspectRatio(contentMode: .fit)
                             Text(channel.channelName)
                         }
+                    }
                     }
                     .navigationBarTitle("Channel Search")
 
@@ -62,10 +46,26 @@ struct ContentView: View {
         
     }
 
+    fileprivate func peformSearch(query:String) {
+          isLoading = true
+          Api.shared.searchChannel(channel: query) { (resp: ChannelSearchListResponse?) in
+              guard let resp = resp else{
+                  self.isLoading = false
+                  print("Error!!!!")
+                  return
+              }
+              self.isLoading = false
+              let channelItems = resp.items.map { (item:ChannelSearchListResponse.Item) -> ChannelListItem in
+                  return ChannelListItem(channelImageURL: item.snippet.thumbnails.high.url, channelName: item.snippet.channelTitle, channelId: item.snippet.channelID, uploadCount: 3)
+              }
+              self.channelManager.replace(newChannels: channelItems)
+          }
+      }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ChannelListView()
     }
 }
