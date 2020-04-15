@@ -39,7 +39,10 @@ struct VideoListView: View {
         }
         .navigationBarTitle(self.playlistName)
         .onAppear {
-            self.fetchVideos(playlistId:self.playlistId)
+            if(self.videoManager.getPlaylistId() != self.playlistId){
+                self.videoManager.clear()
+                self.fetchVideos(playlistId:self.playlistId)
+            }
         }
     }
 
@@ -54,7 +57,7 @@ struct VideoListView: View {
                 print("eror")
                 return
             }
-            self.videoManager.replace(newVideos: items)
+            self.videoManager.replace(newVideos: items, playlistId: playlistId)
 
         }
     }

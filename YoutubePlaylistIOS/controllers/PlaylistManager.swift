@@ -21,8 +21,8 @@ class PlaylistManager:ObservableObject{
     func getChannelName()->String{return channelName}
     func clear(){
         DispatchQueue.main.async {
-                   self.playlists = [PlaylistListItem]()
-               }
+            self.playlists = [PlaylistListItem]()
+        }
     }
     func getPlaylists() -> [PlaylistListItem] {return playlists}
 
