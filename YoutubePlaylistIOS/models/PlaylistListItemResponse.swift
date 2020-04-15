@@ -25,8 +25,8 @@ import Foundation
 
 // MARK: - PlaylistListItemResponse
 class PlaylistListItemResponse: Codable {
-    let kind, etag, nextPageToken:String
-    let prevPageToken: String?
+    let kind, etag:String
+    let prevPageToken,nextPageToken: String?
     let pageInfo: PageInfo
     let items: [Item]
 

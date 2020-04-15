@@ -10,7 +10,9 @@ import Foundation
 class VideoListManager:ObservableObject{
     @Published private var videos = [VideoListItem]()
     static let shared = VideoListManager()
-    public func replace(newVideos:[VideoListItem]){
+    var playlistId = ""
+    public func replace(newVideos:[VideoListItem], playlistId: String){
+        self.playlistId = playlistId
         DispatchQueue.main.async {
             self.videos = newVideos
         }
@@ -21,5 +23,6 @@ class VideoListManager:ObservableObject{
         }
     }
     func getVideos() -> [VideoListItem] {return videos}
+    func getPlaylistId() -> String {return playlistId}
 
 }
