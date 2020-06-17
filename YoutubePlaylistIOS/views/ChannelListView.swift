@@ -31,7 +31,7 @@ struct ChannelListView: View {
                             Text("Go!").padding()
                         })
                         .alert(isPresented: self.$isPresentingAlert) { () -> Alert in
-                            return Alert(title: Text("Please Enter A Channel Name"), message: Text("Please Enter a channel to search for"), dismissButton: .default(Text("OK!"), action: {
+                            return Alert(title: Text("Warning!"), message: Text("Please Enter a channel to search for"), dismissButton: .default(Text("OK!"), action: {
                                 self.isPresentingAlert.toggle()
                             }))
                         }
@@ -58,17 +58,20 @@ struct ChannelListView: View {
             return
         }
         isLoading = true
-        Api.shared.searchChannel(channel: query) { (resp: ChannelSearchListResponse?) in
-            guard let resp = resp else{
-                self.isLoading = false
-                print("Error!!!!")
-                return
-            }
+        Api.shared.searchChannel(channel: query) { (status:NetworkCallStatus,resp: ChannelSearchListResponse?) in
             self.isLoading = false
-            let channelItems = resp.items.map { (item:ChannelSearchListResponse.Item) -> ChannelListItem in
-                return ChannelListItem(channelImageURL: item.snippet.thumbnails.high.url, channelName: item.snippet.channelTitle, channelId: item.snippet.channelID, uploadCount: 3)
+            switch status {
+            case .Error:
+                print("Error")
+                break
+            case.Success:
+                guard let resp = resp else{return}
+                let channelItems = resp.items.map { (item:ChannelSearchListResponse.Item) -> ChannelListItem in
+                    return ChannelListItem(channelImageURL: item.snippet.thumbnails.high.url, channelName: item.snippet.channelTitle, channelId: item.snippet.channelID, uploadCount: 3)
+                }
+                self.channelManager.replace(newChannels: channelItems)
+                break
             }
-            self.channelManager.replace(newChannels: channelItems)
         }
     }
 

@@ -50,13 +50,17 @@ struct PlaylistListView: View {
     
     func searchForPlaylist(channelId: String){
         isLoading = true
-        Api.shared.searchForPlaylists(byChannelId: channelId,channelName: channelName,channelImage: channelImage) { (resp:[PlaylistListItem]?) in
+        Api.shared.searchForPlaylists(byChannelId: channelId,channelName: channelName,channelImage: channelImage) { (status:NetworkCallStatus,resp:[PlaylistListItem]?) in
             self.isLoading = false
-            guard let resp = resp else{
+            switch status{
+            case .Success:
+                guard let resp = resp else{return}
+                self.playlistManager.replace(newPlaylists: resp, channelName: self.channelName)
+                break
+            case .Error:
                 print("error")
-                return
+                break
             }
-            self.playlistManager.replace(newPlaylists: resp, channelName: self.channelName)
         }
     }
 }

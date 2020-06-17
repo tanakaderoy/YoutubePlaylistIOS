@@ -18,7 +18,7 @@ class Api{
         key = URLQueryItem(name: "key", value: API_KEY)
 
     }
-    func searchChannel(channel:String,completion: @escaping  (_ result: ChannelSearchListResponse?)->()){
+    func searchChannel(channel:String,completion: @escaping  (_ status: NetworkCallStatus,_ result: ChannelSearchListResponse?)->()){
         urlComponent.path = "/youtube/v3/search"
         let part = URLQueryItem(name: "part", value: "snippet")
         let maxResults = URLQueryItem(name: "maxResults", value: "10")
@@ -29,55 +29,36 @@ class Api{
             print("URL: \(url)")
             let task = URLSession.shared.channelSearchListResponseTask(with: url) { channelSearchListResponse, response, error in
                 if let error = error{
+                    completion(.Error,nil)
                     print("Error: \(error.localizedDescription)")
                 }
                 if let channelSearchListResponse = channelSearchListResponse {
 
                     print("Datat")
-                    completion(channelSearchListResponse)
+                    completion(.Success,channelSearchListResponse)
                 }
-                completion(nil)
+                completion(.Error,nil)
             }
             task.resume()
         }
     }
 
-    func searchForPlaylists(byChannelId channelId:String, channelName:String, channelImage:String, completion: @escaping (_ result: [PlaylistListItem]?)->()){
+    func searchForPlaylists(byChannelId channelId:String, channelName:String, channelImage:String, completion: @escaping (_ status: NetworkCallStatus,_ result: [PlaylistListItem]?)->()){
         urlComponent.path = "/youtube/v3/playlists"
         let part = URLQueryItem(name: "part", value: "snippet,contentDetails")
         let maxResults = URLQueryItem(name: "maxResults", value: "50")
         let channelIdQ = URLQueryItem(name: "channelId", value: channelId)
         urlComponent.queryItems = [part,maxResults,channelIdQ,key]
         guard let url = urlComponent.url else {
-            completion(nil)
+            completion(.Error,nil)
             return
         }
         print(url)
-        //        let task = URLSession.shared.playlistListResponseTask(with: url) { (playListResponse, response, error) in
-        //            if let error = error{
-        //                print("Error \(error.localizedDescription)")
-        //                completion(nil)
-        //            }
-        //            guard let playListResponse = playListResponse else {
-        //                completion(nil)
-        //                return
-        //            }
-        //            var playlistListItems = playListResponse.items.map { (item: PlaylistListResponse.Item) -> PlaylistListItem in
-        //                return PlaylistListItem(playlistName: item.snippet.title, playlistThumbnailURL: item.snippet.thumbnails.high.url, playlistId: item.id, playlistVideoCount: item.contentDetails.itemCount)
-        //            }
-        //            //PlaylistListItem(channelName + " Uploads", channelImage, uploadCount, channelPlaylistId));
-        //            //                    String channelPlaylistId = channelId.replaceAll("UC", "UU");
-        //            let channelIdPlaylist = channelId.replacingOccurrences(of: "UC", with: "UU")
-        //
-        //            playlistListItems.insert(PlaylistListItem(playlistName: "\(channelName) Uploads", playlistThumbnailURL: channelImage, playlistId: channelIdPlaylist, playlistVideoCount: 200), at: 0)
-        //            completion(playlistListItems)
-        //
-        //        }
-        //        task.resume()
+     
         let task = URLSession.shared.dataTask(with: url, completionHandler: {data,resp,err in
             if let err = err{
                 print("error: \(err.localizedDescription)")
-                completion(nil)
+                completion(.Error,nil)
             }
             if let data = data{
                 do {
@@ -88,12 +69,12 @@ class Api{
                     }
                     let channelIdPlaylist = channelId.replacingOccurrences(of: "UC", with: "UU")
                     playlistListItems.insert(PlaylistListItem(playlistName: "\(channelName) Uploads", playlistThumbnailURL: channelImage, playlistId: channelIdPlaylist, playlistVideoCount: 200), at: 0)
-                    completion(playlistListItems)
+                    completion(.Success,playlistListItems)
                 } catch{
                     let error = error as! DecodingError
                     print("Error during JSON serialization: \(error.recoverySuggestion)")
                     print(error)
-                    completion(nil)
+                    completion(.Error,nil)
                 }
             }
         })
@@ -101,26 +82,34 @@ class Api{
 
     }
 
-    func fetchPlaylistVideos(byPlaylisttId playlistId:String, completion: @escaping (_ result: [VideoListItem]?)->()){
+    func fetchPlaylistVideos(byPlaylisttId playlistId:String, completion: @escaping (_ status: NetworkCallStatus,_ result: [VideoListItem]?)->()){
         urlComponent.path = "/youtube/v3/playlistItems"
         let part = URLQueryItem(name: "part", value: "snippet,contentDetails")
         let maxResults = URLQueryItem(name: "maxResults", value: "50")
         let playlistIdQ = URLQueryItem(name: "playlistId", value: playlistId)
         urlComponent.queryItems = [part,maxResults,playlistIdQ,key]
-        guard let url = urlComponent.url else {return}
+        guard let url = urlComponent.url else {
+            completion(.Error,nil)
+            return
+        }
         print(url)
         let task = URLSession.shared.playlistListItemResponseTask(with: url) { playlistListItemResponse, response, error in
             if let playlistListItemResponse = playlistListItemResponse {
                 let videoListItems = playlistListItemResponse.items.map { (item:PlaylistListItemResponse.Item) -> VideoListItem in
                     return VideoListItem(videoTitle: item.snippet.title, videoDescription: item.snippet.snippetDescription, videoThumbnailUrl: item.snippet.thumbnails.high.url, videoId: item.contentDetails.videoID, playlistId: item.snippet.playlistID)
                 }
-                completion(videoListItems)
+                completion(.Success,videoListItems)
             }
-            completion(nil)
+            completion(.Error,nil)
         }
         task.resume()
     }
     
 }
 
+
+enum NetworkCallStatus{
+    case Success
+    case Error
+}
 
