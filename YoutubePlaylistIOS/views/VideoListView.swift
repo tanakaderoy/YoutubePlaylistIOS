@@ -51,13 +51,17 @@ struct VideoListView: View {
 
     func fetchVideos(playlistId:String){
         isLoading = true
-        Api.shared.fetchPlaylistVideos(byPlaylisttId: playlistId) { (items:[VideoListItem]?) in
+        Api.shared.fetchPlaylistVideos(byPlaylisttId: playlistId) { (status:NetworkCallStatus,items:[VideoListItem]?) in
             self.isLoading = false
-            guard let items = items else{
-                print("eror")
-                return
+            switch status{
+            case .Error:
+                print("error")
+                break
+            case .Success:
+                guard let items = items else{return}
+                self.videoManager.replace(newVideos: items, playlistId: playlistId)
+                break
             }
-            self.videoManager.replace(newVideos: items, playlistId: playlistId)
 
         }
     }
