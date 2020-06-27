@@ -58,14 +58,13 @@ struct ChannelListView: View {
             return
         }
         isLoading = true
-        Api.shared.searchChannel(channel: query) { (status:NetworkCallStatus,resp: ChannelSearchListResponse?) in
+        Api.shared.searchChannel(channel: query) { (res: Result<ChannelSearchListResponse, Error>) in
             self.isLoading = false
-            switch status {
-            case .Error:
-                print("Error")
+            switch res {
+            case .failure(let err):
+                print("Error \(err)")
                 break
-            case.Success:
-                guard let resp = resp else{return}
+            case.success(let resp):
                 let channelItems = resp.items.map { (item:ChannelSearchListResponse.Item) -> ChannelListItem in
                     return ChannelListItem(channelImageURL: item.snippet.thumbnails.high.url, channelName: item.snippet.channelTitle, channelId: item.snippet.channelID, uploadCount: 3)
                 }

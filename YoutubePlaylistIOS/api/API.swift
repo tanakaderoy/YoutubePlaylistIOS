@@ -18,7 +18,7 @@ class Api{
         key = URLQueryItem(name: "key", value: API_KEY)
 
     }
-    func searchChannel(channel:String,completion: @escaping  (_ status: NetworkCallStatus,_ result: ChannelSearchListResponse?)->()){
+    func searchChannel(channel:String,completion: @escaping  (Result<ChannelSearchListResponse, Error>)->()){
         urlComponent.path = "/youtube/v3/search"
         let part = URLQueryItem(name: "part", value: "snippet")
         let maxResults = URLQueryItem(name: "maxResults", value: "10")
@@ -29,15 +29,14 @@ class Api{
             print("URL: \(url)")
             let task = URLSession.shared.channelSearchListResponseTask(with: url) { channelSearchListResponse, response, error in
                 if let error = error{
-                    completion(.Error,nil)
+                    completion(.failure(error))
                     print("Error: \(error.localizedDescription)")
                 }
                 if let channelSearchListResponse = channelSearchListResponse {
 
                     print("Datat")
-                    completion(.Success,channelSearchListResponse)
+                    completion(.success(channelSearchListResponse))
                 }
-                completion(.Error,nil)
             }
             task.resume()
         }
