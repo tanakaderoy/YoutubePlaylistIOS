@@ -99,7 +99,6 @@ class Api{
                 }
                 completion(.success(videoListItems))
             }
-            completion(.failure(MyError.malformedDatta("Could not Decode")))
         }
         task.resume()
     }
@@ -115,6 +114,6 @@ enum NetworkCallStatus{
 enum MyError: Error {
     case runtimeError(String)
     case malformedURL(String)
-    case malformedDatta(String)
+    case malformedData(String)
 }
 
