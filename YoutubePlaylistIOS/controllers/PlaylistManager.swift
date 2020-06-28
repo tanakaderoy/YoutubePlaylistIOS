@@ -14,14 +14,14 @@ class PlaylistManager:ObservableObject{
     static let shared = PlaylistManager()
     public func replace(newPlaylists:[PlaylistListItem], channelName:String){
         self.channelName = channelName
-        DispatchQueue.main.async {
-            self.playlists = newPlaylists
+        DispatchQueue.main.async {[weak self] in
+            self?.playlists = newPlaylists
         }
     }
     func getChannelName()->String{return channelName}
     func clear(){
-        DispatchQueue.main.async {
-            self.playlists = [PlaylistListItem]()
+        DispatchQueue.main.async {[weak self] in
+            self?.playlists = [PlaylistListItem]()
         }
     }
     func getPlaylists() -> [PlaylistListItem] {return playlists}

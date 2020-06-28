@@ -14,33 +14,19 @@ struct VideoListView: View {
     var playlistId, playlistName: String
     @State var isLoading = false
     @State var isShrunk = true
-    @Environment(\.imageCache) var cache: ImageCache
     @ObservedObject var videoManager = VideoListManager.shared
 
     var body: some View {
 
         LoadingView(isShowing: $isLoading) {
             List(self.videoManager.getVideos()){ (video:VideoListItem) in
-                VStack {
-                    HStack {
-
-                        AsyncImage(url: URL(string: video.videoThumbnailUrl)!, placeholder: ActivityIndicator(isAnimating: .constant(true), style: .large), cache: self.cache,width: 192,height: 108).aspectRatio(contentMode: .fit)
-                        Text(video.videoTitle)
-                        Spacer()
-                    }
-                    ShowMoreView(isShrunk: self.$isShrunk, description: video.videoDescription).onTapGesture {
-                        self.isShrunk.toggle()
-                    }.animation(.linear(duration: 0.3))
-                }.onTapGesture {
-                    video.openVideo()
-                }
+                VideoCell(video: video)
             }
 
         }
         .navigationBarTitle(self.playlistName)
         .onAppear {
             if(self.videoManager.getPlaylistId() != self.playlistId){
-                self.videoManager.clear()
                 self.fetchVideos(playlistId:self.playlistId)
             }
         }
@@ -51,14 +37,13 @@ struct VideoListView: View {
 
     func fetchVideos(playlistId:String){
         isLoading = true
-        Api.shared.fetchPlaylistVideos(byPlaylisttId: playlistId) { (status:NetworkCallStatus,items:[VideoListItem]?) in
+        Api.shared.fetchPlaylistVideos(byPlaylisttId: playlistId) { (res: Result<[VideoListItem], Error>) in
             self.isLoading = false
-            switch status{
-            case .Error:
-                print("error")
+            switch res{
+            case .failure(let error):
+                print("error \(error)")
                 break
-            case .Success:
-                guard let items = items else{return}
+            case .success(let items):
                 self.videoManager.replace(newVideos: items, playlistId: playlistId)
                 break
             }
@@ -75,3 +60,24 @@ struct VideoListView_Previews: PreviewProvider {
 
 
 
+
+struct VideoCell: View {
+    @Environment(\.imageCache) var cache: ImageCache
+    var video: VideoListItem
+    @State var isLoading = false
+    @State var isShrunk = true
+    var body: some View {
+        VStack {
+            HStack {
+                AsyncImage(url: URL(string: video.videoThumbnailUrl)!, placeholder: ActivityIndicator(isAnimating: .constant(true), style: .large), cache: self.cache,width: 192,height: 108).aspectRatio(contentMode: .fit)
+                Text(video.videoTitle)
+                Spacer()
+            }
+            ShowMoreView(isShrunk: self.$isShrunk, description: video.videoDescription).onTapGesture {
+                self.isShrunk.toggle()
+            }.animation(.linear(duration: 0.3))
+        }.onTapGesture {
+            self.video.openVideo()
+        }
+    }
+}

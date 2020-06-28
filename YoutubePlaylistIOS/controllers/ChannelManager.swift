@@ -12,14 +12,14 @@ class ChannelManager:ObservableObject {
     @Published private var channels = [ChannelListItem]()
     static let shared = ChannelManager()
     func addChannel(channel:ChannelListItem) {
-        DispatchQueue.main.async {
-            self.channels.append(channel)
+        DispatchQueue.main.async {[weak self] in
+            self?.channels.append(channel)
         }
     }
 
     func replace(newChannels: [ChannelListItem]){
-        DispatchQueue.main.async {
-            self.channels = newChannels
+        DispatchQueue.main.async {[weak self] in
+            self?.channels = newChannels
         }
     }
     func getChannels()-> [ChannelListItem] {return channels}

@@ -13,13 +13,14 @@ class VideoListManager:ObservableObject{
     var playlistId = ""
     public func replace(newVideos:[VideoListItem], playlistId: String){
         self.playlistId = playlistId
-        DispatchQueue.main.async {
-            self.videos = newVideos
+        DispatchQueue.main.async {[weak self] in
+            self?.videos = newVideos
         }
     }
     func clear(){
-        DispatchQueue.main.async {
-            self.videos = [VideoListItem]()
+        DispatchQueue.main.async {[weak self] in
+//            self?.videos = [VideoListItem]()
+            self?.videos.removeAll()
         }
     }
     func getVideos() -> [VideoListItem] {return videos}
