@@ -106,11 +106,6 @@ class Api{
 }
 
 
-enum NetworkCallStatus{
-    case Success
-    case Error
-}
-
 enum MyError: Error {
     case runtimeError(String)
     case malformedURL(String)
